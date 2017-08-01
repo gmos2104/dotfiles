@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# The original script belongs to https://i3wm.org/docs/user-contributed/conky-i3bar.html
+#
+
+echo '{"version": 1}'
+echo '['
+echo '[],'
+
+exec conky -c $HOME/.config/conky/conky.conf
