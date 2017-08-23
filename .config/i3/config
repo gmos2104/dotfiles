@@ -1,9 +1,6 @@
 # mod key
 set $mod Mod4
 
-# hide borders
-hide_edge_borders both
-
 # font
 font pango:Fira Sans 9
 
@@ -16,41 +13,26 @@ bindsym $mod+Shift+q kill
 # start menu
 bindsym $mod+d exec rofi -show run
 
-# change focus (vim style)
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-# change focus (arrows)
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-# move focused window (vim style)
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# move focused window (arrows)
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# split horizontal
-bindsym $mod+h split h
-
-# split vertical
-bindsym $mod+v split v
+# toggle split horizontal/vertical
+bindsym $mod+s split toggle
 
 # fullscreen
 bindsym $mod+f fullscreen toggle
 
 # stacked layout
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 
 # tabbed layout
 bindsym $mod+w layout tabbed
@@ -107,23 +89,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window
-mode "resize" {
-        # vim style
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
-
-        # arrow
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+bindsym $mod+Shift+Ctrl+h resize shrink width 5 px or 5 ppt
+bindsym $mod+Shift+Ctrl+j resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+Ctrl+k resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+Ctrl+l resize grow width 5 px or 5 ppt
 
 # color definition
 set $white       #f0f0f0
@@ -154,12 +123,13 @@ bar {
 		# class			border		background	text
 		focused_workspace	$orange         $orange         $white
 		inactive_workspace	$dark-grey      $dark-grey      $white
-		urgent_workspace	$dark-red       $dark-red       $white
+		urgent_workspace	$white          $dark-red       $white
         }
 }
 
 # application startup
-# exec --no-startup-id compton -f --vsync opengl
+exec --no-startup-id compton -f
+exec --no-startup-id feh --bg-scale ${HOME}/.config/wallpaper/portal2.jpg
 
 # multimedia key bindings
 bindsym XF86AudioLowerVolume exec amixer set Master playback 1%-
