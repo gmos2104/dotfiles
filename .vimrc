@@ -1,3 +1,5 @@
+filetype plugin on
+
 set number
 set relativenumber
 
@@ -7,6 +9,9 @@ set path+=**
 
 set smartcase
 
+colorscheme onedark
+
+""" Netrw file explorer config
 let g:netrw_banner=0                         " disable banner
 let g:netrw_winsize=80                       " split window with 80% of screen
 let g:netrw_altv=1                           " open vertical splits to the right
@@ -16,8 +21,8 @@ let g:netrw_list_hide=netrw_gitignore#Hide() " ignore files on .gitignore
 
 """ Load plugins using Plug
 call plug#begin()
-Plug 'vim-syntastic/syntastic'
-Plug 'Yggdroot/indentLine'
+Plug 'vim-syntastic/syntastic', {'for': ['javascript', 'python']}
+Plug 'Yggdroot/indentLine', {'for': ['html', 'javascript', 'python']}
 call plug#end()
 
 """ Recommended defaults for syntastic
@@ -47,8 +52,7 @@ cnoremap  <Down>  <NOP>
 cnoremap  <Left>  <NOP>
 cnoremap  <Right> <NOP>
 
-filetype plugin on
-
+""" Set indentation for certain file types
 autocmd FileType css setlocal sw=2 sts=2
 autocmd FileType html setlocal sw=2 sts=2
 autocmd FileType javascript setlocal sw=2 sts=2
